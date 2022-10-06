@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CredentialsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::controller(CredentialsController::class)->group(function () {
+    Route::get('/elasticsearch', 'index');
+    // Route::get('/elasticsearch/{id}', 'show');
+    // Route::post('/orders', 'store');
+});
 
 Route::get('/', function () {
     return view('welcome');

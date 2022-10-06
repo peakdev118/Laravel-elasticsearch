@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('credentials', function (Blueprint $table) {
             $table->id();
+            $table->text('domain');
+            $table->text('country');
+            $table->text('username');
+            $table->text('password');
+            $table->text('month');
+            $table->integer('year');
             $table->timestamps();
         });
     }

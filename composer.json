@@ -8,9 +8,13 @@
         "php": "^8.0.2",
         "cviebrock/laravel-elasticsearch": "^9.0",
         "guzzlehttp/guzzle": "^7.2",
+        "kyslik/column-sortable": "^6.4",
+        "laravel-doctrine/scout": "^0.4.0",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/scout": "^9.4",
+        "laravel/tinker": "^2.7",
+        "twbs/bootstrap": "5.0.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Credentials extends Model
+class Credential extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'domain', 'country', 'username', 'password','month','year'
+    ];
 }

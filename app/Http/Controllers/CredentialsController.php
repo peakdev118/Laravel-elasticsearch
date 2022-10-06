@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Credentials;
+use App\Models\Credential;
 use App\Http\Requests\StoreCredentialsRequest;
 use App\Http\Requests\UpdateCredentialsRequest;
+use Illuminate\Http\Request;
+use Elasticsearch;
 
 class CredentialsController extends Controller
 {
@@ -13,9 +15,30 @@ class CredentialsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        //
+        $searchValue = $request->searchValue;
+        $response = Elasticsearch::search([
+            'index' => 'credentials',
+            'body'  => [
+                'query' => [
+                    'multi_match' => [
+                        'query' => $searchValue,
+                        'fields' => [
+                            'domain',
+                            'username'
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+
+        $credentialIds = array_column($response['hits']['hits'], '_id');
+        $credentials = Credential::query()
+        ->findMany($credentialIds)->sortable()->paginate(5);
+        return view('Elasticsearch_database',compact('credentials'));
     }
 
     /**
